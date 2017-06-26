@@ -30,7 +30,7 @@ with DxlClient(config) as client:
         else:
             currentstate = 1
         if (currentstate != previousstate):
-            messagepayload['timestamp'] = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            messagepayload['timestamp'] = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
             messagepayload['location'] = CABINET
             if (currentstate == 0):
                 messagepayload['alert'] = "Cabinet Opened!"
