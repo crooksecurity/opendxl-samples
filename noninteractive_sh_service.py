@@ -1,3 +1,6 @@
+################################################################################
+# Copyright (c) 2017 Parker Crook - All Rights Reserved.
+################################################################################
 #Service
 import logging, os, sys, time, subprocess, re
 from dxlclient.callbacks import RequestCallback
