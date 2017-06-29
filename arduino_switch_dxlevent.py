@@ -39,9 +39,9 @@ with DxlClient(config) as client:
             if (currentstate == 0):
                 messagepayload['alert'] = "Cabinet Opened!"
                 event.payload = messagepayload
-            #else:
-            #    messagepayload['alert'] = "Cabinet Closed!"
-            #    event.payload = messagepayload
+            else:
+                messagepayload['alert'] = "Cabinet Closed!"
+                event.payload = messagepayload
             client.send_event(event)
             previousstate = currentstate
             time.sleep(1) #will wait 1 second between evaluating state changes.
