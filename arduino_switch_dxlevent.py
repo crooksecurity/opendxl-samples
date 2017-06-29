@@ -3,12 +3,14 @@
 ################################################################################
 '''This is POC code to test using IOT devices to add to security detection capabilities
 Using OpenDXL as a messaging bus to send a message, and an Arduino with a Grove Shield
-with a switch to create an alert when the changes to 'open'. In testing, this switch
-is connected to a datacenter cabinet. When the cabinet is open, the button/switch state
-changes to open, sending an alert. Contact parker@crooksecurity.com with comments.
+with a switch to create an alert when the changes to 'open', and also when it closes. 
+In testing, this switch is connected to a datacenter cabinet. When the cabinet is open,
+the button/switch state changes to open, sending an alert. 
 
 This code should work with any digital switch, but this code has only been tested on the
 Grove "Magnetic Switch v1.2" & Grove "Button v1.2".
+
+Contact parker@crooksecurity.com with comments.
 '''
 
 import mraa, time, datetime
