@@ -72,6 +72,7 @@ with DxlClient(config) as client:
                                 ConditionConstants.COND_VALUE: filedict["filename"]
                             }]
                         }]
+		    }
                 )
             if result_context.has_results:
                 search_result = result_context.get_results(limit=5000)
