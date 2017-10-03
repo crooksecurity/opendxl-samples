@@ -59,7 +59,7 @@ with DxlClient(config) as client:
                     conditions={
                         "or": [{
                             "and": [{
-                                ConditionConstants.COND_NAME: "File",
+                                ConditionConstants.COND_NAME: "Files",
                                 ConditionConstants.COND_OUTPUT: "md5",
                                 ConditionConstants.COND_OP: "EQUALS",
                                 ConditionConstants.COND_VALUE: filedict["MD5"]
@@ -67,7 +67,7 @@ with DxlClient(config) as client:
                         }],
                         [{
                             "and": [{
-                                ConditionConstants.COND_NAME: "File",
+                                ConditionConstants.COND_NAME: "Files",
                                 ConditionConstants.COND_OUTPUT: "name",
                                 ConditionConstants.COND_OP: "EQUALS",
                                 ConditionConstants.COND_VALUE: filedict["filename"]
@@ -79,7 +79,7 @@ with DxlClient(config) as client:
                 search_result = result_context.get_results(limit=5000)
                 for item in search_result["items"]:
                     print "Host: %s, %s" %(item["output"]['HostInfo|hostname'], item["output"]['HostInfo|ip_address'])
-                    print "--File: %s, %s, Status: %s" %(item["output"]['File|dir'], item["output"]['File|name'], item["output"]['File|status'])
+                    print "--File: %s, %s, Status: %s" %(item["output"]['Files|dir'], item["output"]['Files|name'], item["output"]['Files|status'])
 		    hostlist.append(item["output"]['HostInfo|hostname'])
                 hosts = ','.join(str(x) for x in hostlist)
                 #apply tag to hosts
