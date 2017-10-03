@@ -40,9 +40,9 @@ with DxlClient(config) as client:
                 thread = threading.Thread(target=self.tie_set_rep, args=[filedict]) #TIE Reputation Set
                 thread.start()
 
-        def mar_search(self, filedict):
         #This function will use MAR to search all computers with MAR installed
-		    hostlist = []
+	def mar_search(self, filedict):
+            hostlist = []
             mar_client = MarClient(client)
             result_context = \
                 mar_client.search(
@@ -79,21 +79,22 @@ with DxlClient(config) as client:
                 for item in search_result["items"]:
                     print "Host: %s, %s" %(item["output"]['HostInfo|hostname'], item["output"]['HostInfo|ip_address'])
                     print "--File: %s, %s, Status: %s" %(item["output"]['File|dir'], item["output"]['File|name'], item["output"]['File|status'])
-					hostlist.append(item["output"]['HostInfo|hostname'])
+		    hostlist.append(item["output"]['HostInfo|hostname'])
                 hosts = ','.join(str(x) for x in hostlist)
                 #apply tag to hosts
-			    thread = threading.Thread(target=self.epo_set_flag, args=[hosts, "CheckpointEvent"]) #ePO Tagging
-				thread.start()
-
-		def epo_set_flag(self, hosts, tag):
-        #This function will take a list of hostnames and apply a tag to them.
-			epo_client = EpoClient(client)
+		thread = threading.Thread(target=self.epo_set_flag, args=[hosts, "CheckpointEvent"]) #ePO Tagging
+		thread.start()
+                
+	#This function will take a list of hostnames and apply a tag to them.
+	def epo_set_flag(self, hosts, tag):
+            epo_client = EpoClient(client)
             res = epo_client.run_command("system.applyTag", {"names": hosts}, {"tagName": tag})
             res_dict = json.loads(res, encoding='utf-8')
             print json.dumps(res_dict, sort_keys=True, indent=4, separators=(',', ': '))
 
+	#This function will set the reputation of an MD5 to known malicious.
         def tie_set_rep(self, filedict):
-        #This function will set the reputation of an MD5 to known malicious.
+
             tie_client = TieClient(client)
             #Should consider use case... and whether or not a lookup should be made for FP mitigation before setting a rep
             else:
