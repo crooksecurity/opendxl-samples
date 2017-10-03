@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 # Create DXL configuration from file
 config = DxlClientConfig.create_dxl_config_from_file(CONFIG_FILE)
 EVENT_TOPIC = "/open/threat/fw/checkpoint/threatemulation"
+ePO_TAG = "CheckpointEvent"
 
 with DxlClient(config) as client:
     # Connect to the fabric
@@ -82,7 +83,7 @@ with DxlClient(config) as client:
 		    hostlist.append(item["output"]['HostInfo|hostname'])
                 hosts = ','.join(str(x) for x in hostlist)
                 #apply tag to hosts
-		thread = threading.Thread(target=self.epo_set_flag, args=[hosts, "CheckpointEvent"]) #ePO Tagging
+		thread = threading.Thread(target=self.epo_set_flag, args=[hosts, ePO_TAG]) #ePO Tagging
 		thread.start()
                 
 	#This function will take a list of hostnames and apply a tag to them.
