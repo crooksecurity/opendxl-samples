@@ -14,3 +14,9 @@ This concept was borrowed from netcat.  Where in netcat/nc, you can get a shell/
 noninteractive_sh_client.py
 
 noninsteractive_sh_service.py
+
+## Checkpoint LEA / McAfee TIE & MAR Connector
+This use case was written to address the consumption of Checkpoint LEA events on the DXL message bus, specifically on the following topic:
+/open/threat/fw/checkpoint/threatemulation. For background please see https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk116678.
+
+When a checpoint event is seen on the above topic, a MAR search will be executed looking for the MD5 hash, the SHA1 hash, or the filename on any hosts in the environment that have a MAR client, and subsequently tagging them with the value set in the ePO_TAG variable; in a separate thread, the MD5 will be set to malicious in the McAfee TIE database. 
